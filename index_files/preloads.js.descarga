@@ -1,0 +1,72 @@
+
+    (function() {
+      var baseURL = "https://cdn.shopify.com/shopifycloud/checkout-web/assets/";
+      var scripts = ["https://cdn.shopify.com/shopifycloud/checkout-web/assets/runtime.latest.es.760f496a2c055465163b.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/9647.latest.es.4fdcb31320183b4cdd0f.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/5719.latest.es.ba9459260384883d3736.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/4085.latest.es.e5fc3583e4e3f9075175.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/app.latest.es.dadb799543670f12e85d.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/2542.latest.es.e8b98a9ed829efc0c730.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/9769.latest.es.70da29fb07b87c11a9d1.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/2080.latest.es.5117e670600bcaf49bb5.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/5767.latest.es.921b52982b783bd85604.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/9649.latest.es.a17b42dbffae94026c36.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/5718.latest.es.d9c656453cf4a6a40bfa.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/2714.latest.es.6c6bc40b3a4ce7e062f6.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/668.latest.es.42757d5cfa036b58221f.js","https://cdn.shopify.com/shopifycloud/checkout-web/assets/OnePage.latest.es.35a1a6cb38d1d5b05a05.js"];
+      var styles = ["https://cdn.shopify.com/shopifycloud/checkout-web/assets/9647.latest.es.c30c1ce206a580faeff8.css","https://cdn.shopify.com/shopifycloud/checkout-web/assets/app.latest.es.5da3f52c706a09a6da39.css","https://cdn.shopify.com/shopifycloud/checkout-web/assets/6268.latest.es.24776bc55f29002e680f.css"];
+      var fontPreconnectUrls = [];
+      var fontPrefetchUrls = [];
+      var imgPrefetchUrls = ["https://cdn.shopify.com/s/files/1/0686/2746/4465/files/LogoBarberia_x320.png?v=1669653996","https://cdn.shopify.com/s/files/1/0686/2746/4465/files/Foto21800x1800_2000x.jpg?v=1669691671"];
+
+      function preconnect(url, callback) {
+        var link = document.createElement('link');
+        link.rel = 'dns-prefetch preconnect';
+        link.href = url;
+        link.crossOrigin = '';
+        link.onload = link.onerror = callback;
+        document.head.appendChild(link);
+      }
+
+      function preconnectAssets() {
+        var resources = [baseURL].concat(fontPreconnectUrls);
+        var index = 0;
+        (function next() {
+          var res = resources[index++];
+          if (res) preconnect(res, next);
+        })();
+      }
+
+      function prefetch(url, as, callback) {
+        var link = document.createElement('link');
+        if (link.relList.supports('prefetch')) {
+          link.rel = 'prefetch';
+          link.fetchPriority = 'low';
+          link.as = as;
+          if (as === 'font') link.type = 'font/woff2';
+          link.href = url;
+          link.crossOrigin = '';
+          link.onload = link.onerror = callback;
+          document.head.appendChild(link);
+        } else {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', url, true);
+          xhr.onloadend = callback;
+          xhr.send();
+        }
+      }
+
+      function prefetchAssets() {
+        var resources = [].concat(
+          scripts.map(function(url) { return [url, 'script']; }),
+          styles.map(function(url) { return [url, 'style']; }),
+          fontPrefetchUrls.map(function(url) { return [url, 'font']; }),
+          imgPrefetchUrls.map(function(url) { return [url, 'image']; })
+        );
+        var index = 0;
+        (function next() {
+          var res = resources[index++];
+          if (res) prefetch(res[0], res[1], next);
+        })();
+      }
+
+      function onLoaded() {
+        preconnectAssets();
+        prefetchAssets();
+      }
+
+      if (document.readyState === 'complete') {
+        onLoaded();
+      } else {
+        addEventListener('load', onLoaded);
+      }
+    })();
+  

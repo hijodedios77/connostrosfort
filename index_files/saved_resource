@@ -1,0 +1,140 @@
+function SMIB_loadjQuery(url, success){
+     var script = document.createElement('script');
+     script.src = url;
+     var head = document.getElementsByTagName('head')[0],
+     done = false;
+     head.appendChild(script);
+     script.onload = script.onreadystatechange = function() {
+        if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+             done = true;
+             success();
+             script.onload = script.onreadystatechange = null;
+             head.removeChild(script);
+        }
+     };
+}
+
+function loadForkAwesome(success) {
+    var head  = document.getElementsByTagName('head')[0], done = false;;
+    var link  = document.createElement('link');
+    link.id   = "ea-smib-forkawesome";
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = "https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
+    link.media = 'all';
+    head.appendChild(link);
+    link.onload = link.onreadystatechange = function() {
+        if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+             done = true;
+             success();
+        }
+     };
+}
+
+function rSMC(smt) {
+    jQuery.get('https://app.getsocialbar.com/rsmc/6a1501267ff311ee81efe67d712ed5d3//' + smt + '.js');
+}
+
+function SMIB_loadStyleSheet(styleSheetUrl, success) {
+    var css = '.effectiveAppsSocialMediaIconsBar{z-index: 100000;right:1%; position: fixed; transition: all 0.4s;bottom:2%;}.effectiveAppsSocialMediaIconsBarContainer{position: fixed; z-index: 100000;bottom:2%;}.effectiveAppsSocialMediaIconsBarController{position: fixed;right:0.19999999999999996px; z-index: 1000001;bottom:1%; right:1%;}.effectiveAppsSocialMediaIconsBar__closed{transition: all 0.4s;right: -44px;}.effectiveAppsSocialMediaIconsBar a{display: block;text-align: center;display: flex;justify-content: center;align-items: center;height:50px;width:50px;font-size:19.23076923076923px;text-decoration: none;}.effectiveAppsSocialMediaIconsBar a:hover{background-color: #000}.ea-smib-facebook{background:#4267b2;color:#fff}.ea-smib-reddit{background:#FF5700;color:#fff}.ea-smib-slack{background:#4A154B;color:#fff}.ea-smib-biolink{background:#ff5860;color:#fff}.ea-smib-truth{background:#5448ee;color:#fff}.ea-smib-instagram{color:#fff;background:#d6249f;background:radial-gradient(circle at 30% 107%,#fdf497 0,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 95%)}.ea-smib-instagram:hover{background-color:#000;background:#000}.ea-smib-youtube{background:#FF0000;color:#fff}.ea-smib-linkedin{background:#007bb5;color:#fff}.ea-smib-twitter{background:#55acee;color:#fff}.ea-smib-x{background:#000000;color:#fff}.ea-smib-twitch{background:#9146ff;color:#fff}.ea-smib-pinterest{background:#bd081c;color:#fff}.ea-smib-weibo{background:#e6162d;color:#fff}.ea-smib-tumblr{background:#34465d;color:#fff}.ea-smib-yelp{background:#f84444;color:#fff}.ea-smib-amazon{background:#232f3e;color:#fff}.ea-smib-etsy{background:#F56400;color:#fff}.ea-smib-link{background:#000000;color:#fff}.ea-smib-tools{background:#000000;color:#fff}.ea-smib-text_message{background:#4edc66;color:#fff}.ea-smib-pandora_social{background:#2299F8;color:#fff}.ea-smib-limewire{background:#04ac5d;color:#fff}.ea-smib-trust_pilot{background:#28AA78;color:#fff}.ea-smib-bubble_network{background:#0b89c0;color:#fff}.ea-smib-vk{background:#0077FF;color:#fff}.ea-smib-zalo{background:#0073FF;color:#fff}.ea-smib-flipkart{background:#FDE20E;color:#fff}.ea-smib-newsletter{background:#000000;color:#fff}.ea-smib-spotify{background:#1DB954;color:#fff}.ea-smib-soundcloud{background:#F26F23;color:#fff}.ea-smib-ebay{background:#0064D2;color:#fff}.ea-smib-threads{background:#000000;color:#fff}.ea-smib-whatnot{background:#fff400;color:#fff}.ea-smib-walmart{background:#0071ce;color:#fff}.ea-smib-kick{background:#53fc19;color:#fff}.ea-smib-music{background:#fc3c44;color:#fff}.ea-smib-google{background:#db4a39;color:#fff}.ea-smib-snapchat{background:#fffc00;color:black;}.ea-smib-snapchat:hover{color:#fff}.ea-smib-behance{background:#053eff;color:#fff}.ea-smib-discord{background:#7289DA;color:#fff}.ea-smib-vimeo{background:#1ab7ea;color:#fff}.ea-smib-wechat{background:#7BB32E;color:#fff}.ea-smib-messenger{background:#0084FF;color:#fff}.ea-smib-whatsapp{background:#9d8f63;color:#fff}.ea-smib-telegram{background:#0088cc;color:#fff}.ea-smib-patreon{background:#FF424D;color:#fff}.ea-smib-email{background:#5cbdea;color:#fff}.ea-smib-phone{background:#9d8f63;color:#fff}.ea-smib-onlyfans{background:#049df2;color:#fff}.ea-smib-opensea{background:#2081E2;color:#fff}.ea-smib-looksrare{background:#04cd58;color:#fff}.ea-smib-grubhub{background:#ff8000;color:#fff}.ea-smib-rumble{background:#ff8000;color:#fff}.ea-smib-line{background:#00b900;color:#fff}.ea-smib-upwork{background:#14a800;color:#fff}.ea-smib-fiverr{background:#1dbf73;color:#fff}.ea-smib-tiktok{background:#000000;color:#fff}.ea-smib-tiktok:hover{fill:#fff}';
+    var head = document.head || document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
+    document.head.appendChild(style);
+    style.innerHTML = css;
+    var head  = document.getElementsByTagName('head')[0], done = false;;
+    var link  = document.createElement('link');
+    link.id   = "ea-smib-fontawesome";
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = styleSheetUrl;
+    link.media = 'all';
+    head.appendChild(link);
+    link.onload = link.onreadystatechange = function() {
+        if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+             done = true;
+             success();
+        }
+     };
+}
+
+function SMIB_getLsWithExpiry(key) {
+	const itemStr = localStorage.getItem(key)
+	if (!itemStr) {
+		return null
+	}
+
+	const item = JSON.parse(itemStr)
+	const now = new Date()
+	if (now.getTime() > item.expiry) {
+		localStorage.removeItem(key)
+		return null
+	}
+
+	return item.value.toString();
+}
+
+function SMIB_setLsWithExpiry(key, value, ttl) {
+    value = value.toString();
+	const now = new Date()
+	const item = {
+		value: value,
+		expiry: now.getTime() + ttl,
+	}
+	localStorage.setItem(key, JSON.stringify(item))
+}
+
+function SMIB_main() {
+    console.log('%c------ Social Bar: Social Media Icons by Effective Apps is Initializing ------', 'color: cyan');
+    console.log('%c------ Contact us at support@effectify.co for help and questions about the app ------', 'color: cyan');
+    if (window.SMIB_SCRIPT_INJECTED === undefined) {
+        window.SMIB_SCRIPT_INJECTED = true;
+        if ('4' === '7' && null === SMIB_getLsWithExpiry('smib_payg_i')) {
+            jQuery.get('https://app.getsocialbar.com/ri/6a1501267ff311ee81efe67d712ed5d3.js');
+            SMIB_setLsWithExpiry('smib_payg_i', 'true', 604800000);
+        }
+
+        if ('2' === '2') {
+            if (ShopifyAnalytics.meta.page.pageType !== "home"){
+                return;
+            }
+        }
+
+        if (localStorage.getItem('effectiveAppsSmibState') === null || localStorage.getItem('effectiveAppsSmibState') === "opened") {
+            jQuery("body").prepend('<div class="effectiveAppsSocialMediaIconsBarContainer" id="eaSmibContainer" onmouseleave="smibBarMouseOut()" onmouseover="smibBarMouseOver()"><div id="eaSmibBarController" class="effectiveAppsSocialMediaIconsBarController" style="display: none"><i onclick="toggleSMIB()" class="fa fa-close" style="color: #FFFFFF;"></i></div><div id="eaSmib" class="effectiveAppsSocialMediaIconsBar"><a onclick="rSMC(\'phone\')" onmouseover="this.style.color=\'white\'" href="tel:+525555104500" style="border-radius: 50%; color: #fff;" target="_blank" class="ea-smib-phone"><i class="fa fa-phone"></i></a><div style="padding-top: 3px; padding-bottom: 3px;"></div><a onclick="rSMC(\'whatsapp\')" onmouseover="this.style.color=\'white\'" href="https://api.whatsapp.com/send?phone=5555104500" style="border-radius: 50%" target="_blank" class="ea-smib-whatsapp"><i class="fa fa-whatsapp"></i></a><div style="padding-top: 3px; padding-bottom: 3px;"></div></div></div>');
+        }
+        else {
+            jQuery("body").prepend('<div class="effectiveAppsSocialMediaIconsBarContainer" id="eaSmibContainer" onmouseleave="smibBarMouseOut()" onmouseover="smibBarMouseOver()"><div id="eaSmibBarController" class="effectiveAppsSocialMediaIconsBarController" style="display: none"><i onclick="toggleSMIB()" class="fa fa-close" style="color: #FFFFFF;"></i></div><div id="eaSmib" class="effectiveAppsSocialMediaIconsBar effectiveAppsSocialMediaIconsBar__closed"><a onclick="rSMC(\'phone\')" onmouseover="this.style.color=\'white\'" href="tel:+525555104500" style="border-radius: 50%; color: #fff;" target="_blank" class="ea-smib-phone"><i class="fa fa-phone"></i></a><div style="padding-top: 3px; padding-bottom: 3px;"></div><a onclick="rSMC(\'whatsapp\')" onmouseover="this.style.color=\'white\'" href="https://api.whatsapp.com/send?phone=5555104500" style="border-radius: 50%" target="_blank" class="ea-smib-whatsapp"><i class="fa fa-whatsapp"></i></a><div style="padding-top: 3px; padding-bottom: 3px;"></div></div></div>');
+        }
+    }
+}
+
+function smibBarMouseOut() {
+if (!document.getElementById('eaSmib').classList.contains('effectiveAppsSocialMediaIconsBar__closed')) {
+    jQuery('#eaSmibBarController').fadeOut();
+  }
+}
+
+function smibBarMouseOver() {
+if (document.getElementById('eaSmib').classList.contains('effectiveAppsSocialMediaIconsBar__closed')) {
+    document.getElementById('eaSmib').classList.toggle('effectiveAppsSocialMediaIconsBar__closed', false);
+    localStorage.setItem('effectiveAppsSmibState', 'opened');
+  } else {
+    jQuery('#eaSmibBarController').fadeIn();
+  }
+}
+
+function toggleSMIB() {
+    localStorage.setItem('effectiveAppsSmibState', 'collapsed');
+    var event = document.getElementById('eaSmibContainer').onmouseover;
+    document.getElementById('eaSmibContainer').onmouseover = null;
+    document.getElementById('eaSmib').classList.toggle('effectiveAppsSocialMediaIconsBar__closed', true);
+    jQuery('#eaSmibBarController').fadeOut();
+    setTimeout(function() {document.getElementById('eaSmibContainer').onmouseover = event;}, 1500);
+}
+
+if (typeof jQuery === 'undefined') {
+    SMIB_loadjQuery('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js',
+               function() {SMIB_loadStyleSheet("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", function() { loadForkAwesome(SMIB_main); })});
+} else {
+    SMIB_loadStyleSheet("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", function() { loadForkAwesome(SMIB_main); });
+}
